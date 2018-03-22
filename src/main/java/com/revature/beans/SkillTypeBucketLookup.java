@@ -2,10 +2,10 @@ package com.revature.beans;
 
 import java.io.Serializable;
 
-public class SkillTypeBucketLookup implements Serializable{
-	
+public class SkillTypeBucketLookup implements Serializable {
+
 	private static final long serialVersionUID = 1444288553114351059L;
-	
+
 	private Integer skillTypeBucketLookupId;
 	private SkillType skillType;
 	private Bucket bucket;
@@ -19,6 +19,12 @@ public class SkillTypeBucketLookup implements Serializable{
 		this.weight = weight;
 	}
 
+	public SkillTypeBucketLookup(SimpleSkillTypeBucketLookup sstbl) {
+		this.skillTypeBucketLookupId = sstbl.getSkillTypeBucketLookupId();
+		this.skillType = new SkillType(sstbl.getSkillType());
+		this.bucket = new Bucket(sstbl.getBucket());
+		this.weight = sstbl.getWeight();
+	}
 
 	public int getSkillTypeBucketLookupId() {
 		return skillTypeBucketLookupId;
@@ -62,7 +68,7 @@ public class SkillTypeBucketLookup implements Serializable{
 		result = prime * result + ((weight == null) ? 0 : weight.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -72,48 +78,48 @@ public class SkillTypeBucketLookup implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		SkillTypeBucketLookup tbl = (SkillTypeBucketLookup) obj;
-		if(this.skillTypeBucketLookupId == null) {
-			if(tbl.skillTypeBucketLookupId != null) {
+		if (this.skillTypeBucketLookupId == null) {
+			if (tbl.skillTypeBucketLookupId != null) {
 				return false;
 			}
 		}
-		if(this.skillTypeBucketLookupId != tbl.getSkillTypeBucketLookupId()) {
+		if (this.skillTypeBucketLookupId != tbl.getSkillTypeBucketLookupId()) {
 			return false;
 		}
-		
-		if(this.skillType == null) {
-			if(tbl.getSkillType() != null) {
+
+		if (this.skillType == null) {
+			if (tbl.getSkillType() != null) {
 				return false;
 			}
 		}
-		if(!this.skillType.equals(tbl.getSkillType())) {
+		if (!this.skillType.equals(tbl.getSkillType())) {
 			return false;
 		}
-		
-		if(this.bucket == null) {
-			if(tbl.getBucket() != null) {
+
+		if (this.bucket == null) {
+			if (tbl.getBucket() != null) {
 				return false;
 			}
 		}
-		if(!this.bucket.equals(tbl.getBucket())) {
+		if (!this.bucket.equals(tbl.getBucket())) {
 			return false;
 		}
-		
-		if(this.weight == null) {
-			if(tbl.getWeight() != null) {
+
+		if (this.weight == null) {
+			if (tbl.getWeight() != null) {
 				return false;
 			}
 		}
-		if(this.weight != tbl.getWeight()) {
+		if (this.weight != tbl.getWeight()) {
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "SkillTypeBucketLookup[skillTypeBucketLookupId="+skillTypeBucketLookupId
-				+", bucket="+bucket+", skillType="+skillType+", weight="+weight+"]";
+		return "SkillTypeBucketLookup[skillTypeBucketLookupId=" + skillTypeBucketLookupId + ", bucket=" + bucket
+				+ ", skillType=" + skillType + ", weight=" + weight + "]";
 	}
 }

@@ -13,36 +13,45 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="SKILL_TYPE_BUCKET_LOOKUP")
-public class SimpleSkillTypeBucketLookup implements Serializable{
-	
+@Table(name = "SKILL_TYPE_BUCKET_LOOKUP")
+public class SimpleSkillTypeBucketLookup implements Serializable {
+
 	private static final long serialVersionUID = 67213928524176831L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE")
-	@SequenceGenerator(allocationSize=1,name="SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE",sequenceName="SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE")
-	@Column(name="SKILL_TYPE_BUCKET_LOOKUP_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE")
+	@SequenceGenerator(allocationSize = 1, name = "SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE", sequenceName = "SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE")
+	@Column(name = "SKILL_TYPE_BUCKET_LOOKUP_ID")
 	private Integer skillTypeBucketLookupId;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="SKILL_TYPE_ID")
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "SKILL_TYPE_ID")
 	private SimpleSkillType skillType;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="BUCKET_ID")
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "BUCKET_ID")
 	private SimpleBucket bucket;
-	
-	@Column(name="WEIGHT")
+
+	@Column(name = "WEIGHT")
 	private Double weight;
 
-	public SimpleSkillTypeBucketLookup(int skillTypeBucketLookupId, SimpleSkillType skillType, SimpleBucket bucket, Double weight) {
+	public SimpleSkillTypeBucketLookup(int skillTypeBucketLookupId, SimpleSkillType skillType, SimpleBucket bucket,
+			Double weight) {
 		super();
 		this.skillTypeBucketLookupId = skillTypeBucketLookupId;
 		this.skillType = skillType;
 		this.bucket = bucket;
 		this.weight = weight;
 	}
-	
+
+	public SimpleSkillTypeBucketLookup(SkillTypeBucketLookup stbl) {
+		super();
+		this.skillTypeBucketLookupId = stbl.getSkillTypeBucketLookupId();
+		this.skillType = new SimpleSkillType(stbl.getSkillType());
+		this.bucket = new SimpleBucket(stbl.getBucket());
+		this.weight = stbl.getWeight();
+	}
+
 	public int getSkillTypeBucketLookupId() {
 		return skillTypeBucketLookupId;
 	}
@@ -85,7 +94,7 @@ public class SimpleSkillTypeBucketLookup implements Serializable{
 		result = prime * result + ((weight == null) ? 0 : weight.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -95,48 +104,48 @@ public class SimpleSkillTypeBucketLookup implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		SimpleSkillTypeBucketLookup tbl = (SimpleSkillTypeBucketLookup) obj;
-		if(this.skillTypeBucketLookupId == null) {
-			if(tbl.skillTypeBucketLookupId != null) {
+		if (this.skillTypeBucketLookupId == null) {
+			if (tbl.skillTypeBucketLookupId != null) {
 				return false;
 			}
 		}
-		if(this.skillTypeBucketLookupId != tbl.getSkillTypeBucketLookupId()) {
+		if (this.skillTypeBucketLookupId != tbl.getSkillTypeBucketLookupId()) {
 			return false;
 		}
-		
-		if(this.skillType == null) {
-			if(tbl.getSkillType() != null) {
+
+		if (this.skillType == null) {
+			if (tbl.getSkillType() != null) {
 				return false;
 			}
 		}
-		if(!this.skillType.equals(tbl.getSkillType())) {
+		if (!this.skillType.equals(tbl.getSkillType())) {
 			return false;
 		}
-		
-		if(this.bucket == null) {
-			if(tbl.getBucket() != null) {
+
+		if (this.bucket == null) {
+			if (tbl.getBucket() != null) {
 				return false;
 			}
 		}
-		if(!this.bucket.equals(tbl.getBucket())) {
+		if (!this.bucket.equals(tbl.getBucket())) {
 			return false;
 		}
-		
-		if(this.weight == null) {
-			if(tbl.getWeight() != null) {
+
+		if (this.weight == null) {
+			if (tbl.getWeight() != null) {
 				return false;
 			}
 		}
-		if(this.weight != tbl.getWeight()) {
+		if (this.weight != tbl.getWeight()) {
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "SkillTypeBucketLookup[skillTypeBucketLookupId="+skillTypeBucketLookupId
-				+", bucket="+bucket+", skillType="+skillType+", weight="+weight+"]";
+		return "SkillTypeBucketLookup[skillTypeBucketLookupId=" + skillTypeBucketLookupId + ", bucket=" + bucket
+				+ ", skillType=" + skillType + ", weight=" + weight + "]";
 	}
 }
