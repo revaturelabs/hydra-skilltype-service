@@ -1,0 +1,27 @@
+server:
+  port: 8931
+security: 
+  basic:
+    enabled: false
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://35.183.1.239:8761/eureka/
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+  h2:
+    console:
+      enabled: true
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:testdb;MODE=Oracle
+  rabbitmq:
+    addresses: ${RABBIT_ADDRESSES}
+    host: ${RABBIT_HOST}
+    port: 5672
+    username: ${RABBIT_USERNAME}
+    password: ${RABBIT_PASSWORD}

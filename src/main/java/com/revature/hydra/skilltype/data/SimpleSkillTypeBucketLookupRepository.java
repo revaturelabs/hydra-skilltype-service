@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.beans.SimpleSkillTypeBucketLookup;
 import com.revature.beans.SimpleSkillType;
 
-public interface SkillTypeBucketLookupRepository extends JpaRepository<SimpleSkillTypeBucketLookup, Integer>{
+public interface SimpleSkillTypeBucketLookupRepository extends JpaRepository<SimpleSkillTypeBucketLookup, Integer>{
 
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<SimpleSkillTypeBucketLookup> findAllBySkillType(SimpleSkillType skillType);

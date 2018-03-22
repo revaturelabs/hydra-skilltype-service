@@ -13,29 +13,29 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TRACK_BUCKET_LOOKUP")
+@Table(name="SKILL_TYPE_BUCKET_LOOKUP")
 public class SimpleSkillTypeBucketLookup implements Serializable{
 	
 	private static final long serialVersionUID = 67213928524176831L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="TRACK_BUCKET_LOOKUP_SEQUENCE")
-	@SequenceGenerator(allocationSize=1,name="TRACK_BUCKET_LOOKUP_SEQUENCE",sequenceName="TRACK_BUCKET_LOOKUP_SEQUENCE")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE")
+	@SequenceGenerator(allocationSize=1,name="SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE",sequenceName="SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE")
 	@Column(name="SKILL_TYPE_BUCKET_LOOKUP_ID")
 	private Integer skillTypeBucketLookupId;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="SKILL_TYPE_ID")
-	private SkillType skillType;
+	private SimpleSkillType skillType;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="BUCKET_ID")
-	private Bucket bucket;
+	private SimpleBucket bucket;
 	
 	@Column(name="WEIGHT")
 	private Double weight;
 
-	public SimpleSkillTypeBucketLookup(int skillTypeBucketLookupId, SkillType skillType, Bucket bucket, Double weight) {
+	public SimpleSkillTypeBucketLookup(int skillTypeBucketLookupId, SimpleSkillType skillType, SimpleBucket bucket, Double weight) {
 		super();
 		this.skillTypeBucketLookupId = skillTypeBucketLookupId;
 		this.skillType = skillType;
@@ -43,14 +43,6 @@ public class SimpleSkillTypeBucketLookup implements Serializable{
 		this.weight = weight;
 	}
 	
-	public SimpleSkillTypeBucketLookup(SkillTypeBucketLookup tbl) {
-		super();
-		this.skillTypeBucketLookupId = tbl.getSkillTypeBucketLookupId();
-		this.skillType = tbl.getSkillType();
-		this.bucket = tbl.getBucket();
-		this.weight = tbl.getWeight();
-	}
-
 	public int getSkillTypeBucketLookupId() {
 		return skillTypeBucketLookupId;
 	}
@@ -59,19 +51,19 @@ public class SimpleSkillTypeBucketLookup implements Serializable{
 		this.skillTypeBucketLookupId = skillTypeBucketLookupId;
 	}
 
-	public SkillType getSkillType() {
+	public SimpleSkillType getSkillType() {
 		return skillType;
 	}
 
-	public void setSkillType(SkillType skillType) {
+	public void setSkillType(SimpleSkillType skillType) {
 		this.skillType = skillType;
 	}
 
-	public Bucket getBucket() {
+	public SimpleBucket getBucket() {
 		return bucket;
 	}
 
-	public void setBucket(Bucket bucket) {
+	public void setBucket(SimpleBucket bucket) {
 		this.bucket = bucket;
 	}
 

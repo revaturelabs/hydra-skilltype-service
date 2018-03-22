@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.revature.beans.SimpleSkillType;
 
 @Repository
-public interface SkillTypeRepository extends JpaRepository<SimpleSkillType, Integer>{
+public interface SimpleSkillTypeRepository extends JpaRepository<SimpleSkillType, Integer>{
 	
 	/**
 	 * Set the isActive state of the SkillType with given skillTypeId
@@ -21,7 +21,7 @@ public interface SkillTypeRepository extends JpaRepository<SimpleSkillType, Inte
 	 * @param skillTypeId the unique id of a SkillType object.
 	 */
 	@Modifying(clearAutomatically = true)
-	@Query("update SkillType st set st.isActive = ?1 where st.skillTypeId = ?2")
+	@Query("update SimpleSkillType st set st.isActive = ?1 where st.skillTypeId = ?2")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	void toggleSkillTypeStatusById(boolean isActive, Integer skillTypeId);
 	

@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.SimpleSkillType;
-import com.revature.hydra.skilltype.data.SkillTypeBucketLookupRepository;
-import com.revature.hydra.skilltype.data.SkillTypeRepository;
+import com.revature.hydra.skilltype.data.SimpleSkillTypeBucketLookupRepository;
+import com.revature.hydra.skilltype.data.SimpleSkillTypeRepository;
 
 @Service
 public class SkillTypeCompositionService {
@@ -15,10 +15,10 @@ public class SkillTypeCompositionService {
 	AmqpTemplate rabbitTemplate;
 	
 	@Autowired
-	SkillTypeRepository skillTypeRepository;
+	SimpleSkillTypeRepository skillTypeRepository;
 	
 	@Autowired
-	SkillTypeBucketLookupRepository skillTypeBucketLookupRepository;
+	SimpleSkillTypeBucketLookupRepository skillTypeBucketLookupRepository;
 	
 	public void createSkill(Integer skillTypeId, String skillTypeName, Integer[] bucketIds, Integer[] weights) {
 		SimpleSkillType st = new SimpleSkillType(skillTypeId, skillTypeName, true);

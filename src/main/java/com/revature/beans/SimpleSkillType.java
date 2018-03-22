@@ -11,14 +11,14 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity 
-@Table(name="SKILLTYPE")
+@Table(name="SKILL_TYPE")
 public class SimpleSkillType implements Serializable{
 	
 	private static final long serialVersionUID = -2921585672870839165L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="TRACK_SEQUENCE")
-	@SequenceGenerator(name="TRACK_SEQUENCE",sequenceName="TRACK_SEQUENCE")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SKILL_TYPE_SEQUENCE")
+	@SequenceGenerator(name="SKILL_TYPE_SEQUENCE",sequenceName="SKILL_TYPE_SEQUENCE")
 	@Column(name="SKILL_TYPE_ID")
 	private Integer skillTypeId;
 	
