@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: hydra-question-service
+  cloud:
+    config:
+      uri: https://config-26a372bc-9469-49da-8378-47c57b903b36.cfapps.io
