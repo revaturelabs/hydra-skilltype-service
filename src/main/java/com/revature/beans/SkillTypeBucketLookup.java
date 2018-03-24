@@ -22,7 +22,6 @@ public class SkillTypeBucketLookup implements Serializable {
 	public SkillTypeBucketLookup(SimpleSkillTypeBucketLookup sstbl) {
 		this.skillTypeBucketLookupId = sstbl.getSkillTypeBucketLookupId();
 		this.skillType = new SkillType(sstbl.getSkillType());
-		this.bucket = new Bucket(sstbl.getBucket());
 		this.weight = sstbl.getWeight();
 	}
 
