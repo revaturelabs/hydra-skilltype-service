@@ -25,6 +25,9 @@ public class SimpleSkillType implements Serializable {
 	@Column(name = "SKILL_TYPE_NAME")
 	private String skillTypeName;
 
+	@Column(name="SIMPLE_SKILL_TYPE_DESCRIPTION")
+	private String skillTypeDescription;
+	
 	@Column(name = "IS_ACTIVE")
 	private Boolean isActive;
 
@@ -45,9 +48,10 @@ public class SimpleSkillType implements Serializable {
 		this.skillTypeName = skillTypeName;
 	}
 
-	public SimpleSkillType(String skillTypeName, Boolean isActive) {
+	public SimpleSkillType(String skillTypeName, String skillTypeDescription, Boolean isActive) {
 		super();
 		this.skillTypeName = skillTypeName;
+		this.skillTypeDescription = skillTypeDescription;
 		this.isActive = isActive;
 	}
 
@@ -55,6 +59,7 @@ public class SimpleSkillType implements Serializable {
 		super();
 		this.skillTypeId = t.getSkillTypeId();
 		this.skillTypeName = t.getSkillTypeName();
+		this.skillTypeDescription = t.getSkillTypeDescription();
 		this.isActive = t.getIsActive();
 	}
 
@@ -72,6 +77,14 @@ public class SimpleSkillType implements Serializable {
 
 	public void setSkillTypeName(String skillTypeName) {
 		this.skillTypeName = skillTypeName;
+	}
+
+	public String getSkillTypeDescription() {
+		return skillTypeDescription;
+	}
+
+	public void setSkillTypeDescription(String skillTypeDescription) {
+		this.skillTypeDescription = skillTypeDescription;
 	}
 
 	public Boolean getIsActive() {

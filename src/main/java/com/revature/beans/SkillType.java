@@ -2,12 +2,13 @@ package com.revature.beans;
 
 import java.io.Serializable;
 
-public class SkillType implements Serializable{
-	
+public class SkillType implements Serializable {
+
 	private static final long serialVersionUID = 1886465103481784278L;
-	
+
 	private Integer skillTypeId;
 	private String skillTypeName;
+	private String skillTypeDescription;
 	private Boolean isActive;
 
 	public SkillType(int skillTypeId, String skillTypeName, Boolean isActive) {
@@ -16,7 +17,15 @@ public class SkillType implements Serializable{
 		this.skillTypeName = skillTypeName;
 		this.isActive = isActive;
 	}
-	
+
+	public SkillType(Integer skillTypeId, String skillTypeName, String skillTypeDescription, Boolean isActive) {
+		super();
+		this.skillTypeId = skillTypeId;
+		this.skillTypeName = skillTypeName;
+		this.skillTypeDescription = skillTypeDescription;
+		this.isActive = isActive;
+	}
+
 	public SkillType(SimpleSkillType st) {
 		super();
 		this.skillTypeId = st.getSkillTypeId();
@@ -40,6 +49,14 @@ public class SkillType implements Serializable{
 		this.skillTypeName = skillTypeName;
 	}
 
+	public String getSkillTypeDescription() {
+		return skillTypeDescription;
+	}
+
+	public void setSkillTypeDescription(String skillTypeDescription) {
+		this.skillTypeDescription = skillTypeDescription;
+	}
+
 	public Boolean getIsActive() {
 		return isActive;
 	}
@@ -47,7 +64,7 @@ public class SkillType implements Serializable{
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,7 +74,7 @@ public class SkillType implements Serializable{
 		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -67,38 +84,39 @@ public class SkillType implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		SkillType t = (SkillType) obj;
-		if(this.skillTypeId == null) {
-			if(t.getSkillTypeId() != null) {
+		if (this.skillTypeId == null) {
+			if (t.getSkillTypeId() != null) {
 				return false;
 			}
 		}
-		if(this.skillTypeId != t.getSkillTypeId()) {
+		if (this.skillTypeId != t.getSkillTypeId()) {
 			return false;
 		}
-		
-		if(this.skillTypeName == null) {
-			if(t.getSkillTypeName() != null) {
+
+		if (this.skillTypeName == null) {
+			if (t.getSkillTypeName() != null) {
 				return false;
 			}
 		}
-		if(this.skillTypeName.equals(t.getSkillTypeName())) {
+		if (this.skillTypeName.equals(t.getSkillTypeName())) {
 			return false;
 		}
-		
-		if(this.isActive == null) {
-			if(t.isActive != null) {
+
+		if (this.isActive == null) {
+			if (t.isActive != null) {
 				return false;
 			}
 		}
-		if(this.isActive != t.getIsActive()) {
+		if (this.isActive != t.getIsActive()) {
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "SkillType[skillTypeId="+skillTypeId+", skillTypeName="+skillTypeName+", isActive="+isActive+"]";
+		return "SkillType[skillTypeId=" + skillTypeId + ", skillTypeName=" + skillTypeName + ", isActive=" + isActive
+				+ "]";
 	}
 }

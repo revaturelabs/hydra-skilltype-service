@@ -28,8 +28,8 @@ public class SkillTypeCompositionService {
 		return skillType;
 	}
 
-	public void createSkill(String skillTypeName) {
-		SimpleSkillType st = new SimpleSkillType(skillTypeName, true);
+	public void createSkill(String skillTypeName, String skillTypeDescription) {
+		SimpleSkillType st = new SimpleSkillType(skillTypeName, skillTypeDescription, true);
 		skillTypeRepository.save(st);
 	}
 
