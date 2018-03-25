@@ -17,4 +17,6 @@ public interface SimpleSkillTypeBucketLookupRepository extends JpaRepository<Sim
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<SimpleSkillTypeBucketLookup> deleteBySkillType(SimpleSkillType skillType);
+
+	List<SimpleSkillTypeBucketLookup> findBySkillType(SimpleSkillType sst);
 }

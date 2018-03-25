@@ -28,14 +28,24 @@ public class SimpleSkillTypeBucketLookup implements Serializable {
 	@JoinColumn(name = "SKILL_TYPE_ID")
 	private SimpleSkillType skillType;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "BUCKET_ID")
-	private SimpleBucket bucket;
+	@Column(name = "BUCKET_ID")
+	private Integer bucket;
 
 	@Column(name = "WEIGHT")
 	private Double weight;
 
-	public SimpleSkillTypeBucketLookup(int skillTypeBucketLookupId, SimpleSkillType skillType, SimpleBucket bucket,
+	public SimpleSkillTypeBucketLookup() {
+		super();
+	}
+
+	public SimpleSkillTypeBucketLookup(SimpleSkillType skillType, Integer bucket, Double weight) {
+		super();
+		this.skillType = skillType;
+		this.bucket = bucket;
+		this.weight = weight;
+	}
+
+	public SimpleSkillTypeBucketLookup(int skillTypeBucketLookupId, SimpleSkillType skillType, Integer bucket,
 			Double weight) {
 		super();
 		this.skillTypeBucketLookupId = skillTypeBucketLookupId;
@@ -48,11 +58,11 @@ public class SimpleSkillTypeBucketLookup implements Serializable {
 		super();
 		this.skillTypeBucketLookupId = stbl.getSkillTypeBucketLookupId();
 		this.skillType = new SimpleSkillType(stbl.getSkillType());
-		this.bucket = new SimpleBucket(stbl.getBucket());
+		this.bucket = stbl.getBucket().getBucketId();
 		this.weight = stbl.getWeight();
 	}
 
-	public int getSkillTypeBucketLookupId() {
+	public Integer getSkillTypeBucketLookupId() {
 		return skillTypeBucketLookupId;
 	}
 
@@ -68,12 +78,12 @@ public class SimpleSkillTypeBucketLookup implements Serializable {
 		this.skillType = skillType;
 	}
 
-	public SimpleBucket getBucket() {
+	public Integer getBucket() {
 		return bucket;
 	}
 
 	public void setBucket(SimpleBucket bucket) {
-		this.bucket = bucket;
+		this.bucket = bucket.getBucketId();
 	}
 
 	public Double getWeight() {

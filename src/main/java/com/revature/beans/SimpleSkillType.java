@@ -10,23 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity 
-@Table(name="SKILL_TYPE")
-public class SimpleSkillType implements Serializable{
-	
+@Entity
+@Table(name = "SKILL_TYPE")
+public class SimpleSkillType implements Serializable {
+
 	private static final long serialVersionUID = -2921585672870839165L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SKILL_TYPE_SEQUENCE")
-	@SequenceGenerator(name="SKILL_TYPE_SEQUENCE",sequenceName="SKILL_TYPE_SEQUENCE")
-	@Column(name="SKILL_TYPE_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SKILL_TYPE_SEQUENCE")
+	@SequenceGenerator(name = "SKILL_TYPE_SEQUENCE", sequenceName = "SKILL_TYPE_SEQUENCE")
+	@Column(name = "SKILL_TYPE_ID")
 	private Integer skillTypeId;
-	
-	@Column(name="SKILL_TYPE_NAME")
+
+	@Column(name = "SKILL_TYPE_NAME")
 	private String skillTypeName;
-	
-	@Column(name="IS_ACTIVE")
+
+	@Column(name = "IS_ACTIVE")
 	private Boolean isActive;
+
+	public SimpleSkillType() {
+		super();
+	}
 
 	public SimpleSkillType(int skillTypeId, String skillTypeName, Boolean isActive) {
 		super();
@@ -34,7 +38,19 @@ public class SimpleSkillType implements Serializable{
 		this.skillTypeName = skillTypeName;
 		this.isActive = isActive;
 	}
-	
+
+	public SimpleSkillType(Integer skillTypeId, String skillTypeName) {
+		super();
+		this.skillTypeId = skillTypeId;
+		this.skillTypeName = skillTypeName;
+	}
+
+	public SimpleSkillType(String skillTypeName, Boolean isActive) {
+		super();
+		this.skillTypeName = skillTypeName;
+		this.isActive = isActive;
+	}
+
 	public SimpleSkillType(SkillType t) {
 		super();
 		this.skillTypeId = t.getSkillTypeId();
@@ -65,8 +81,7 @@ public class SimpleSkillType implements Serializable{
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,7 +91,7 @@ public class SimpleSkillType implements Serializable{
 		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -86,38 +101,39 @@ public class SimpleSkillType implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		SimpleSkillType t = (SimpleSkillType) obj;
-		if(this.skillTypeId == null) {
-			if(t.getSkillTypeId() != null) {
+		if (this.skillTypeId == null) {
+			if (t.getSkillTypeId() != null) {
 				return false;
 			}
 		}
-		if(this.skillTypeId != t.getSkillTypeId()) {
+		if (this.skillTypeId != t.getSkillTypeId()) {
 			return false;
 		}
-		
-		if(this.skillTypeName == null) {
-			if(t.getSkillTypeName() != null) {
+
+		if (this.skillTypeName == null) {
+			if (t.getSkillTypeName() != null) {
 				return false;
 			}
 		}
-		if(!this.skillTypeName.equals(t.getSkillTypeName())) {
+		if (!this.skillTypeName.equals(t.getSkillTypeName())) {
 			return false;
 		}
-		
-		if(this.isActive == null) {
-			if(t.isActive != null) {
+
+		if (this.isActive == null) {
+			if (t.isActive != null) {
 				return false;
 			}
 		}
-		if(this.isActive != t.getIsActive()) {
+		if (this.isActive != t.getIsActive()) {
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "SkillType[skillTypeId="+skillTypeId+", skillTypeName="+skillTypeName+", isActive="+isActive+"]";
+		return "SkillType[skillTypeId=" + skillTypeId + ", skillTypeName=" + skillTypeName + ", isActive=" + isActive
+				+ "]";
 	}
 }

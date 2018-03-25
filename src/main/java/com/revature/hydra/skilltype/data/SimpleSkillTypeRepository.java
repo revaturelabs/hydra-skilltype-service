@@ -31,6 +31,13 @@ public interface SimpleSkillTypeRepository extends JpaRepository<SimpleSkillType
 	 * @param skillTypeId the unique id of a SkillType object.
 	 * @return A SkillType object relating to the given skillTypeId
 	 */
-	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	SimpleSkillType findBySkillTypeId(Integer skillTypeId);
+	
+	/**
+	 * Find a single SkillType by given name
+	 * 
+	 * @param name
+	 * @return
+	 */
+	SimpleSkillType findBySkillTypeName(String name);
 }
