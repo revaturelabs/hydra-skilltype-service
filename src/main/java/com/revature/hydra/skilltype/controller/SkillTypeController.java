@@ -47,39 +47,7 @@ public class SkillTypeController {
 	@RequestMapping(value = "/skillType/createSkillType", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> createSkillType(@RequestBody SimpleSkillType simpleSkillType) {
 		if (skillTypeCompositionService.findSkillTypeByName(simpleSkillType.getSkillTypeName()) == null) {
-			skillTypeCompositionService.createSkill(simpleSkillType.getSkillTypeName());
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
-
-	/**
-	 * Create a new set of associations between skillType and skillTypeBucketLookup
-	 * 
-	 * @param skillTypeBuckets
-	 */
-	@RequestMapping(value = "/skillType/setSkillTypeBucket", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> setSkillTypeBucket(@RequestBody SkillTypeBucketWrapper skillTypeBuckets) {
-		if (skillTypeCompositionService.createSkillTypeBucketLookup(skillTypeBuckets.getSkillTypeName(),
-				skillTypeBuckets.getBucketIds(), skillTypeBuckets.getWeights())) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
-
-	/**
-	 * Updates a SkillTypeBucketLookup object and it's relation to Bucket objects
-	 * 
-	 * @param SkillTypeBucketWrapper
-	 *            class for receiving the request
-	 * @return An HttpStatus of No_Content
-	 */
-	@RequestMapping(value = "/skillType/updateSkillTypeBucket", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> updateSkillType(@RequestBody SkillTypeBucketWrapper skillTypeBuckets) {
-
-		if (skillTypeCompositionService.updateSkillTypeBucketLookup(skillTypeBuckets.getSkillTypeId(),
-				skillTypeBuckets.getSkillTypeName(), skillTypeBuckets.getBucketIds(), skillTypeBuckets.getWeights())) {
-
+			skillTypeCompositionService.createSkill(simpleSkillType.getSkillTypeName(), simpleSkillType.getSkillTypeDescription());
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -122,16 +90,48 @@ public class SkillTypeController {
 		return new ResponseEntity<>(sts, HttpStatus.FOUND);
 	}
 
+	/**
+	 * Create a new set of associations between skillType and skillTypeBucketLookup
+	 * 
+	 * @param skillTypeBuckets
+	 */
+	@RequestMapping(value = "/skillType/setSkillTypeBucket", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> setSkillTypeBucket(@RequestBody SkillTypeBucketWrapper skillTypeBuckets) {
+		if (skillTypeCompositionService.createSkillTypeBucketLookup(skillTypeBuckets.getSkillTypeName(),
+				skillTypeBuckets.getBucketIds(), skillTypeBuckets.getWeights())) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+
+	/**
+	 * Updates a SkillTypeBucketLookup object and it's relation to Bucket objects
+	 * 
+	 * @param SkillTypeBucketWrapper
+	 *            class for receiving the request
+	 * @return An HttpStatus of No_Content
+	 */
+	@RequestMapping(value = "/skillType/updateSkillTypeBucket", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> updateSkillType(@RequestBody SkillTypeBucketWrapper skillTypeBuckets) {
+
+		if (skillTypeCompositionService.updateSkillTypeBucketLookup(skillTypeBuckets.getSkillTypeId(),
+				skillTypeBuckets.getSkillTypeName(), skillTypeBuckets.getBucketIds(), skillTypeBuckets.getWeights())) {
+
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+
 	@RequestMapping(value = "/skillType/getSkillTypeBuckets/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<SimpleBucket>> getSkillTypeBuckets(@PathVariable("id") Integer skillTypeId) {
 		SimpleSkillType sst = skillTypeRepository.findBySkillTypeId(skillTypeId);
-		
+
 		List<SimpleSkillTypeBucketLookup> sstbl = skillTypeBucketLookupRepository.findBySkillType(sst);
-		
+    
 		// Get a list of bucketIds
 		List<Integer> bucketIds = new ArrayList<>();
 		if (sstbl.size() != 0) {
-			for(SimpleSkillTypeBucketLookup s : sstbl) {
+			for (SimpleSkillTypeBucketLookup s : sstbl) {
 				bucketIds.add(s.getBucket());
 			}
 		}
@@ -151,31 +151,9 @@ public class SkillTypeController {
 	 *         with the given id
 	 */
 	@RequestMapping(value = "/skillType/getSkillType/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<SimpleSkillTypeBucketLookup>> getSkillTypes(
-			@PathVariable("id") Integer skillTypeId) {
+	public ResponseEntity<List<SimpleSkillTypeBucketLookup>> getSkillTypes(@PathVariable("id") Integer skillTypeId) {
 		SimpleSkillType sst = skillTypeRepository.findBySkillTypeId(skillTypeId);
 		List<SimpleSkillTypeBucketLookup> sstbl = skillTypeBucketLookupRepository.findAllBySkillType(sst);
 		return new ResponseEntity<>(sstbl, HttpStatus.FOUND);
-		// TO-DO Need to probably create a new conjoined object that owns a list of
-		// SkillTypeBucketLookup and a SkillType. Front-end wants
-		// all of that information, and it's probably better to give them all of it
-		// rather than have them try to persist SkillType info though
-		// components.
 	}
-
-	/**
-	 * Finds and returns all information associated with a list of Bucket objects
-	 * associated with the given SkillType
-	 * 
-	 * @param skillTypeId
-	 *            The unique id of a SkillType object
-	 * @return The SkillTypeBucketLookup and associated Bucket objects.
-	 */
-	@RequestMapping(value = "skillType/getTopics/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<SimpleBucket>> getBucketsBySkillType(@PathVariable("id") Integer skillTypeId) {
-		SimpleSkillType sst = skillTypeRepository.findBySkillTypeId(skillTypeId);
-
-		return new ResponseEntity<>(new ArrayList<SimpleBucket>(), HttpStatus.FOUND);
-	}
-
 }
