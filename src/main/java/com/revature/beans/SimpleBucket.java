@@ -1,33 +1,17 @@
 package com.revature.beans;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
-@Entity 
-@Table(name="BUCKET")
 public class SimpleBucket implements Serializable{
 	
 	private static final long serialVersionUID = 2435095816452768808L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="BUCKET_ID_SEQUENCE")
-	@SequenceGenerator(name="BUCKET_ID_SEQUENCE",sequenceName="BUCKET_ID_SEQUENCE")
-	@Column(name="BUCKET_ID")
 	private Integer bucketId;
-	
-	@Column(name="BUCKET_CATEGORY")
+
 	private String bucketCategory;
 	
-	@Column(name="BUCKET_DESCRIPTION")
 	private String bucketDescription;
 	
-	@Column(name="IS_ACTIVE")
 	private Boolean isActive;
 	
 	public SimpleBucket() {

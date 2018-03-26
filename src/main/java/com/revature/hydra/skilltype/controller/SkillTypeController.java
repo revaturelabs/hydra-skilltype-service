@@ -123,21 +123,23 @@ public class SkillTypeController {
 	}
 
 	@RequestMapping(value = "/skillType/getSkillTypeBuckets/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Integer>> getSkillTypeBuckets(@PathVariable("id") Integer skillTypeId) {
+	public ResponseEntity<List<SimpleBucket>> getSkillTypeBuckets(@PathVariable("id") Integer skillTypeId) {
 		SimpleSkillType sst = skillTypeRepository.findBySkillTypeId(skillTypeId);
 		
 		List<SimpleSkillTypeBucketLookup> sstbl = skillTypeBucketLookupRepository.findBySkillType(sst);
 		
-		/*
-		 * Test by returning an integer list
-		 */
+		// Get a list of bucketIds
 		List<Integer> bucketIds = new ArrayList<>();
 		if (sstbl.size() != 0) {
 			for(SimpleSkillTypeBucketLookup s : sstbl) {
 				bucketIds.add(s.getBucket());
 			}
 		}
-		return new ResponseEntity<>(bucketIds, HttpStatus.FOUND);
+		
+		// Send list to a composition service.
+		List<SimpleBucket> bucketList = skillTypeCompositionService.getBucketListByIds(bucketIds);
+		
+		return new ResponseEntity<>(bucketList, HttpStatus.OK);
 	}
 
 	/**

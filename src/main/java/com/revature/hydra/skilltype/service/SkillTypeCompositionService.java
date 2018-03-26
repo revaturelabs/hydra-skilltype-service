@@ -2,10 +2,10 @@ package com.revature.hydra.skilltype.service;
 
 import java.util.List;
 
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.beans.SimpleBucket;
 import com.revature.beans.SimpleSkillType;
 import com.revature.beans.SimpleSkillTypeBucketLookup;
 import com.revature.hydra.skilltype.data.SimpleSkillTypeBucketLookupRepository;
@@ -15,7 +15,7 @@ import com.revature.hydra.skilltype.data.SimpleSkillTypeRepository;
 public class SkillTypeCompositionService {
 
 	@Autowired
-	AmqpTemplate rabbitTemplate;
+	private SkillTypeMessageSender messageSender;
 
 	@Autowired
 	SimpleSkillTypeRepository skillTypeRepository;
@@ -88,5 +88,15 @@ public class SkillTypeCompositionService {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Message bucket service to get a list of bucket information
+	 * 
+	 * @param bucketIds
+	 * @return
+	 */
+	public List<SimpleBucket> getBucketListByIds(List<Integer> bucketIds) {
+		return messageSender.getBucketListByIds(bucketIds);
 	}
 }
