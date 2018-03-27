@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+/**
+ * Skilltype service main class
+ */
 @SpringBootApplication
 @EnableEurekaClient
 @EntityScan("com.revature.beans")
