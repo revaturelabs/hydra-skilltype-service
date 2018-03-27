@@ -1,8 +1,6 @@
-
-
 spring:
   application:
     name: hydra-skilltype-service
   cloud:
     config:
-      uri: https://config-26a372bc-9469-49da-8378-47c57b903b36.cfapps.io 
+      uri: https://config-26a372bc-9469-49da-8378-47c57b903b36.cfapps.io

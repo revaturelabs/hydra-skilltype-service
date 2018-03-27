@@ -27,7 +27,7 @@ import com.revature.hydra.skilltype.service.SkillTypeCompositionService;
 import com.revature.hydra.skilltype.wrapper.SkillTypeBucketWrapper;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @ComponentScan("com.revature.hydra.skilltype.*")
 public class SkillTypeController {
 
@@ -172,7 +172,7 @@ public class SkillTypeController {
 	 * @param skillTypeId Id of skilltype
 	 * @return List of buckets
 	 */
-	@RequestMapping(value="/skillType/getSkillTypeBucketsWithWeights/{skillTypeId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/skillType/getSkillTypeBucketsWithWeights/{skillTypeId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SkillTypeBucketLookup> getSkillTypeBucketWithWeights(@PathVariable("skillTypeId") Integer skillTypeId){
 		SimpleSkillType sst = skillTypeRepository.findBySkillTypeId(skillTypeId);
 
@@ -193,6 +193,7 @@ public class SkillTypeController {
 		for(SimpleBucket b : bucketList) {
 			
 			buckets[y] = new Bucket(b);
+			y++;
 		}
 		
 		// Get a Double[] of weights

@@ -73,11 +73,10 @@ public class SkillTypeCompositionService {
 
 		if (sum == 100d) {
 			SimpleSkillType st = skillTypeRepository.findOne(skillTypeId);
-			List<SimpleSkillTypeBucketLookup> sstbl = skillTypeBucketLookupRepository.findBySkillType(st);
 			
 			// Update skillType. 
 			// Delete old skillType Bucket associations
-			if (sstbl.size() == 0 && st != null) {
+			if (st != null) {
 				skillTypeBucketLookupRepository.deleteBySkillType(st);
 				
 				for (int i = 0; i < bucketIds.length && i < weights.length; i++) {
@@ -105,9 +104,11 @@ public class SkillTypeCompositionService {
 
 		if (sum == 100d) {
 			SimpleSkillType st = skillTypeRepository.findBySkillTypeName(skillTypeName);
+			System.out.println(st.toString());
 			List<SimpleSkillTypeBucketLookup> sstbl = skillTypeBucketLookupRepository.findBySkillType(st);
 			// Create a new skill type association if it doesn't exist.
 			if (sstbl.size() == 0 && st != null) {
+				System.out.println(sstbl.toString());
 				// Go through both arrays and add entries accordingly.
 				for (int i = 0; i < bucketIds.length && i < weights.length; i++) {
 					skillTypeBucketLookupRepository.save(new SimpleSkillTypeBucketLookup(st, bucketIds[i], weights[i]));
