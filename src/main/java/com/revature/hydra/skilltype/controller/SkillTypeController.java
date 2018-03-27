@@ -26,12 +26,6 @@ import com.revature.hydra.skilltype.data.SimpleSkillTypeRepository;
 import com.revature.hydra.skilltype.service.SkillTypeCompositionService;
 import com.revature.hydra.skilltype.wrapper.SkillTypeBucketWrapper;
 
-/**
- * 
- * @author Sungkwon
- * @author Gin Andrews
- *
- */
 @RestController
 @CrossOrigin
 @ComponentScan("com.revature.hydra.skilltype.*")
@@ -92,8 +86,8 @@ public class SkillTypeController {
 	/**
 	 * Update skilltype with new information.
 	 * 
-	 * @param skillType
-	 * @return
+	 * @param skillType Updated skilltype
+	 * @return An HttpStatus of ok
 	 */
 	@RequestMapping(value = "/skillType/updateSkillType", method = RequestMethod.POST)
 	public ResponseEntity<Void> activateSkillType(@RequestBody SimpleSkillType skillType){
@@ -109,13 +103,13 @@ public class SkillTypeController {
 	@RequestMapping(value = "/skillType/getSkillTypes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<SimpleSkillType>> getSkillTypes() {
 		List<SimpleSkillType> sts = skillTypeRepository.findAll();
-		return new ResponseEntity<>(sts, HttpStatus.FOUND);
+		return new ResponseEntity<>(sts, HttpStatus.OK);
 	}
 
 	/**
 	 * Create a new set of associations between skillType and skillTypeBucketLookup
 	 * 
-	 * @param skillTypeBuckets
+	 * @param skillTypeBuckets Body of skill types and buckets
 	 */
 	@RequestMapping(value = "/skillType/setSkillTypeBucket", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> setSkillTypeBucket(@RequestBody SkillTypeBucketWrapper skillTypeBuckets) {
@@ -150,8 +144,8 @@ public class SkillTypeController {
 	/**
 	 * Return a list of buckets that based on skillTypeId provided.
 	 * 
-	 * @param skillTypeId
-	 * @return
+	 * @param skillTypeId Id of skilltype
+	 * @return List of buckets
 	 */
 	@RequestMapping(value = "/skillType/getSkillTypeBuckets/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<SimpleBucket>> getSkillTypeBuckets(@PathVariable("id") Integer skillTypeId) {
@@ -175,8 +169,8 @@ public class SkillTypeController {
 	/**
 	 * Get a list of buckets and return arrays of buckets and their weights.
 	 * 
-	 * @param skillTypeId
-	 * @return
+	 * @param skillTypeId Id of skilltype
+	 * @return List of buckets
 	 */
 	@RequestMapping(value="/skillType/getSkillTypeBucketsWithWeights/{skillTypeId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SkillTypeBucketLookup> getSkillTypeBucketWithWeights(@PathVariable("skillTypeId") Integer skillTypeId){
@@ -228,6 +222,6 @@ public class SkillTypeController {
 	public ResponseEntity<List<SimpleSkillTypeBucketLookup>> getSkillTypes(@PathVariable("id") Integer skillTypeId) {
 		SimpleSkillType sst = skillTypeRepository.findBySkillTypeId(skillTypeId);
 		List<SimpleSkillTypeBucketLookup> sstbl = skillTypeBucketLookupRepository.findBySkillType(sst);
-		return new ResponseEntity<>(sstbl, HttpStatus.FOUND);
+		return new ResponseEntity<>(sstbl, HttpStatus.OK);
 	}
 }

@@ -29,11 +29,23 @@ public class SkillTypeCompositionService {
 	@Autowired
 	SimpleSkillTypeBucketLookupRepository skillTypeBucketLookupRepository;
 
+	/**
+	 * Find a single SkillType by given name
+	 * 
+	 * @param name Passed name
+	 * @return SkillType by given name
+	 */
 	public SimpleSkillType findSkillTypeByName(String name) {
 		SimpleSkillType skillType = skillTypeRepository.findBySkillTypeName(name);
 		return skillType;
 	}
 
+	/**
+	 * Creates skill based on given information
+	 *  
+	 * @param skillTypeName skilltype name
+	 * @param skillTypeDescription skilltype description
+	 */
 	public void createSkill(String skillTypeName, String skillTypeDescription) {
 		SimpleSkillType st = new SimpleSkillType(skillTypeName, skillTypeDescription, true);
 		skillTypeRepository.save(st);
@@ -45,10 +57,12 @@ public class SkillTypeCompositionService {
 	 * Checks to see if the weights add up to 100% before performing further
 	 * actions. Deletes skillType from table before adding the information.
 	 * 
-	 * @param skillTypeId
-	 * @param skillTypeName
-	 * @param bucketIds
-	 * @param weights
+	 * @param skillTypeId Id of skilltype
+	 * @param skillTypeName skilltype name
+	 * @param bucketIds array of bucket ids
+	 * @param weights array of weights
+	 * 
+	 * @return Whether association was successfully created
 	 */
 	public Boolean updateSkillTypeBucketLookup(Integer skillTypeId, String skillTypeName, Integer[] bucketIds,
 			Double[] weights) {
@@ -78,10 +92,10 @@ public class SkillTypeCompositionService {
 	/**
 	 * Create an association between skilltype and bucket.
 	 * 
-	 * @param skillTypeName
-	 * @param bucketIds
-	 * @param weights
-	 * @return
+	 * @param skillTypeName Name of skilltype
+	 * @param bucketIds Array of bucket ids
+	 * @param weights Array of weights
+	 * @return Whether association was successfully created
 	 */
 	public Boolean createSkillTypeBucketLookup(String skillTypeName, Integer[] bucketIds, Double[] weights) {
 		Double sum = 0.0;
@@ -107,8 +121,8 @@ public class SkillTypeCompositionService {
 	/**
 	 * Message bucket service to get a list of bucket information
 	 * 
-	 * @param bucketIds
-	 * @return
+	 * @param bucketIds List of bucket ids
+	 * @return  List of simple buckets
 	 */
 	public List<SimpleBucket> getBucketListByIds(List<Integer> bucketIds) {
 		return messageSender.getBucketListByIds(bucketIds);

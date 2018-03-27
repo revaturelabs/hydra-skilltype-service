@@ -19,8 +19,19 @@ import com.revature.beans.SimpleSkillTypeBucketLookup;
 @Repository
 public interface SimpleSkillTypeBucketLookupRepository extends JpaRepository<SimpleSkillTypeBucketLookup, Integer>{
 
+	/**
+	 * Deletes SkillTypeBucketLookups of given skilltype
+	 *  
+	 * @param skillType skilltype from which to delete SkillTypeBucketLookups
+	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	void deleteBySkillType(SimpleSkillType skillType);
 
+	/**
+	 * Finds a list of SimpleSkillTypeBucketLookups with given skilltype
+	 * 
+	 * @param sst skilltype to be searched for
+	 * @return List of SimpleSkillTypeBucketLookups
+	 */
 	List<SimpleSkillTypeBucketLookup> findBySkillType(SimpleSkillType sst);
 }

@@ -23,10 +23,11 @@ public class SkillTypeMessageReceiver {
 	private SkillTypeReceiverProcessor strp;
 
 	/**
-	 * Listens for messages going through the skilltype queue
+	 * Listens for messages going through the skilltype queue to
+	 * return list of bucket ids
 	 * 
-	 * @param message
-	 * @return
+	 * @param message Received message
+	 * @return List of bucket ids
 	 */
 	@RabbitListener(queues = "revature.hydra.repos.skilltype")
 	public List<Integer> receiveBucketRequest(String message) {

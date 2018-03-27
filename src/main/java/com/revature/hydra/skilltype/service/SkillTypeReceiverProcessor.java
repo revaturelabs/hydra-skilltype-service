@@ -28,8 +28,8 @@ public class SkillTypeReceiverProcessor {
 	/**
 	 * Processes a message and replies back with a list of bucketIds.
 	 * 
-	 * @param request
-	 * @return
+	 * @param request JsonObject containing request
+	 * @return List of bucket ids
 	 */
 	public List<Integer> processBucketIdRequest(JsonObject request) {
 		List<Integer> bucketIds = new ArrayList<>();

@@ -28,7 +28,7 @@ public class SkillTypeMessageSender {
 	 * Send a message to the bucketService microservice to get a list of bucketIds
 	 * 
 	 * @param bucketIds
-	 * @return
+	 * @return List of bucket ids
 	 */
 	public List<SimpleBucket> getBucketListByIds(List<Integer> bucketIds) {
 		JsonObject bucketRequest = new JsonObject();

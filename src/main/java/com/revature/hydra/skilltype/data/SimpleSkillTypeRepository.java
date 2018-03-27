@@ -41,11 +41,18 @@ public interface SimpleSkillTypeRepository extends JpaRepository<SimpleSkillType
 	/**
 	 * Find a single SkillType by given name
 	 * 
-	 * @param name
-	 * @return
+	 * @param name Passed name
+	 * @return SkillType by given name
 	 */
 	SimpleSkillType findBySkillTypeName(String name);
 
+	/**
+	 * Updates skilltype based on given information
+	 * 
+	 * @param skillTypeId Id of skilltype to be updated
+	 * @param skillTypeName Name of updated skilltype
+	 * @param skillTypeDescription Description of updated skilltype
+	 */
 	@Modifying(clearAutomatically = true)
 	@Query("update SimpleSkillType st set st.skillTypeName = ?2, st.skillTypeDescription = ?3 where st.skillTypeId = ?1")
 	@Transactional
