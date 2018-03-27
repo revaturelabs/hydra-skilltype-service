@@ -2,6 +2,7 @@ package com.revature.hydra.skilltype.service;
 
 import java.util.List;
 
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import com.google.gson.JsonParser;
  *
  */
 @Service
+@EnableRabbit
 public class SkillTypeMessageReceiver {
 
 	@Autowired
