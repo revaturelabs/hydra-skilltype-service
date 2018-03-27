@@ -119,6 +119,9 @@ public class SkillTypeController {
 	 */
 	@RequestMapping(value = "/skillType/setSkillTypeBucket", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> setSkillTypeBucket(@RequestBody SkillTypeBucketWrapper skillTypeBuckets) {
+		
+		System.out.println(skillTypeBuckets.toString());
+		
 		if (skillTypeCompositionService.createSkillTypeBucketLookup(skillTypeBuckets.getSkillTypeName(),
 				skillTypeBuckets.getBucketIds(), skillTypeBuckets.getWeights())) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -158,12 +161,11 @@ public class SkillTypeController {
     
 		// Get a list of bucketIds
 		List<Integer> bucketIds = new ArrayList<>();
-		if (sstbl.size() != 0) {
-			for (SimpleSkillTypeBucketLookup s : sstbl) {
-				bucketIds.add(s.getBucket());
-			}
+		for (SimpleSkillTypeBucketLookup s : sstbl) {
+			System.out.println(s.getBucket());
+			bucketIds.add(s.getBucket());
 		}
-		
+	
 		// Send list to a composition service.
 		List<SimpleBucket> bucketList = skillTypeCompositionService.getBucketListByIds(bucketIds);
 		

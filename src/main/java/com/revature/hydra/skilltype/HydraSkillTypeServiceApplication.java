@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
-@EnableEurekaClient
+//@EnableEurekaClient
 @EntityScan("com.revature.beans")
 @EnableRabbit
 public class HydraSkillTypeServiceApplication {
