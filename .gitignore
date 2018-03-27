@@ -28,8 +28,6 @@ bin/
 tmp/ 
 *.tmp 
 
-bootstrap.yml
-
 *.bak 
 *.swp 
 *~.nib 
