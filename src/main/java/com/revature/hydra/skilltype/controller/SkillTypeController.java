@@ -109,7 +109,7 @@ public class SkillTypeController {
 	@RequestMapping(value = "/skillType/getSkillTypes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<SimpleSkillType>> getSkillTypes() {
 		List<SimpleSkillType> sts = skillTypeRepository.findAll();
-		return new ResponseEntity<>(sts, HttpStatus.FOUND);
+		return new ResponseEntity<>(sts, HttpStatus.OK);
 	}
 
 	/**
@@ -226,6 +226,6 @@ public class SkillTypeController {
 	public ResponseEntity<List<SimpleSkillTypeBucketLookup>> getSkillTypes(@PathVariable("id") Integer skillTypeId) {
 		SimpleSkillType sst = skillTypeRepository.findBySkillTypeId(skillTypeId);
 		List<SimpleSkillTypeBucketLookup> sstbl = skillTypeBucketLookupRepository.findBySkillType(sst);
-		return new ResponseEntity<>(sstbl, HttpStatus.FOUND);
+		return new ResponseEntity<>(sstbl, HttpStatus.OK);
 	}
 }
