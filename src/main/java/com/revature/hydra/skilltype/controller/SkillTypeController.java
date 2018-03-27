@@ -26,6 +26,12 @@ import com.revature.hydra.skilltype.data.SimpleSkillTypeRepository;
 import com.revature.hydra.skilltype.service.SkillTypeCompositionService;
 import com.revature.hydra.skilltype.wrapper.SkillTypeBucketWrapper;
 
+/**
+ * 
+ * @author Sungkwon
+ * @author Gin Andrews
+ *
+ */
 @RestController
 @CrossOrigin
 @ComponentScan("com.revature.hydra.skilltype.*")

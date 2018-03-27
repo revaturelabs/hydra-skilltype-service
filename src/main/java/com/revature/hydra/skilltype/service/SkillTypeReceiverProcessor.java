@@ -12,6 +12,11 @@ import com.revature.beans.SimpleSkillTypeBucketLookup;
 import com.revature.hydra.skilltype.data.SimpleSkillTypeBucketLookupRepository;
 import com.revature.hydra.skilltype.data.SimpleSkillTypeRepository;
 
+/**
+ * 
+ * @author Sungkwon Kudo
+ *
+ */
 @Service
 public class SkillTypeReceiverProcessor {
 	@Autowired

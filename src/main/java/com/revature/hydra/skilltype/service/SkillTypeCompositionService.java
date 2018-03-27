@@ -11,6 +11,12 @@ import com.revature.beans.SimpleSkillTypeBucketLookup;
 import com.revature.hydra.skilltype.data.SimpleSkillTypeBucketLookupRepository;
 import com.revature.hydra.skilltype.data.SimpleSkillTypeRepository;
 
+/**
+ * 
+ * @author Gin Andrews
+ * @author Sungkwon Kudo
+ *
+ */
 @Service
 public class SkillTypeCompositionService {
 
@@ -69,6 +75,14 @@ public class SkillTypeCompositionService {
 		return false;
 	}
 
+	/**
+	 * Create an association between skilltype and bucket.
+	 * 
+	 * @param skillTypeName
+	 * @param bucketIds
+	 * @param weights
+	 * @return
+	 */
 	public Boolean createSkillTypeBucketLookup(String skillTypeName, Integer[] bucketIds, Double[] weights) {
 		Double sum = 0.0;
 		for (Double x : weights) {

@@ -2,6 +2,11 @@ package com.revature.hydra.skilltype.wrapper;
 
 import java.util.Arrays;
 
+/**
+ * Wrapper class to use in RequestBody of the controller.
+ * @author Sungkwon Kudo
+ *
+ */
 public class SkillTypeBucketWrapper {
 	
 	private Integer skillTypeId;

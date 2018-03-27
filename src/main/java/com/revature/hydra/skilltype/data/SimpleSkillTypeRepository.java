@@ -11,6 +11,11 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.revature.beans.SimpleSkillType;
 
+/**
+ * 
+ * @author Gin Andrews
+ *
+ */
 @Repository
 public interface SimpleSkillTypeRepository extends JpaRepository<SimpleSkillType, Integer>{
 	
