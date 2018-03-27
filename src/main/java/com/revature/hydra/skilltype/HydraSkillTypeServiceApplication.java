@@ -10,7 +10,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * Skilltype service main class
  */
 @SpringBootApplication
-//@EnableEurekaClient
+@EnableEurekaClient
 @EntityScan("com.revature.beans")
 @EnableRabbit
 public class HydraSkillTypeServiceApplication {
