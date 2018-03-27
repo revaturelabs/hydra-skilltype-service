@@ -27,6 +27,9 @@ hs_err_pid*
 bin/ 
 tmp/ 
 *.tmp 
+
+bootstrap.yml
+
 *.bak 
 *.swp 
 *~.nib 
