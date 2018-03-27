@@ -20,7 +20,6 @@ public class SimpleSkillTypeBucketLookup implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE")
-	@SequenceGenerator(allocationSize = 1, name = "SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE", sequenceName = "SKILL_TYPE_BUCKET_LOOKUP_SEQUENCE")
 	@Column(name = "SKILL_TYPE_BUCKET_LOOKUP_ID")
 	private Integer skillTypeBucketLookupId;
 

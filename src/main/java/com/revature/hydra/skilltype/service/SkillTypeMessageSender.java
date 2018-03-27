@@ -36,6 +36,8 @@ public class SkillTypeMessageSender {
 
 		bucketRequest.addProperty("methodName", "getBucketListByIds");
 		bucketRequest.add("bucketIds", gson.toJsonTree(bucketIds, List.class));
+		
+		
 		return (List<SimpleBucket>) rabbitTemplate.convertSendAndReceive(RABBIT_EXCHANGE, BUCKET_ROUTING_KEY,
 				bucketRequest.toString());
 	}
