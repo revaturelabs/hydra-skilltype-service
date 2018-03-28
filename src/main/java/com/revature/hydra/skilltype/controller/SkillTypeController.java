@@ -27,7 +27,7 @@ import com.revature.hydra.skilltype.service.SkillTypeCompositionService;
 import com.revature.hydra.skilltype.wrapper.SkillTypeBucketWrapper;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin
 @ComponentScan("com.revature.hydra.skilltype.*")
 public class SkillTypeController {
 
