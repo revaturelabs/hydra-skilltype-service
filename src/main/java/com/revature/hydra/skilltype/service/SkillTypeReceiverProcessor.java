@@ -37,14 +37,19 @@ public class SkillTypeReceiverProcessor {
 
 		switch (methodName) {
 		case "findBucketIdsBySkillType":
-			Integer skillTypeId = request.get("skillTypeId").getAsInt();
-			SimpleSkillType simpleSkillType = sstr.findBySkillTypeId(skillTypeId);
-			List<SimpleSkillTypeBucketLookup> lookupList = sstblr.findBySkillType(simpleSkillType);
-			
-			for(SimpleSkillTypeBucketLookup item : lookupList) {
-				bucketIds.add(item.getBucket());
+			Integer skillTypeId = null;
+
+			// Check for null value in JSON
+			if(!request.get("skillTypeId").isJsonNull()) {
+				skillTypeId = request.get("skillTypeId").getAsInt();
+				SimpleSkillType simpleSkillType = sstr.findBySkillTypeId(skillTypeId);
+				List<SimpleSkillTypeBucketLookup> lookupList = sstblr.findBySkillType(simpleSkillType);
+				
+				for(SimpleSkillTypeBucketLookup item : lookupList) {
+					bucketIds.add(item.getBucket());
+				}
 			}
-			
+				
 			break;
 		}
 
