@@ -27,7 +27,7 @@ import com.revature.hydra.skilltype.service.SkillTypeCompositionService;
 import com.revature.hydra.skilltype.wrapper.SkillTypeBucketWrapper;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins="*")
 @ComponentScan("com.revature.hydra.skilltype.*")
 public class SkillTypeController {
 
@@ -64,7 +64,7 @@ public class SkillTypeController {
 	 *            the unique id of a SkillType object
 	 * @return An HttpStatus of No_Content
 	 */
-	@RequestMapping(value = "/skillType/deactiveSkillType/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/skillType/deactiveSkillType/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Void> deactivateSkillType(@PathVariable("id") Integer skillTypeId) {
 		skillTypeRepository.toggleSkillTypeStatusById(false, skillTypeId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -77,7 +77,7 @@ public class SkillTypeController {
 	 *            the unique id of a SkillType object
 	 * @return An HttpStatus of No_Content
 	 */
-	@RequestMapping(value = "/skillType/activeSkillType/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/skillType/activeSkillType/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Void> activateSkillType(@PathVariable("id") Integer skillTypeId) {
 		skillTypeRepository.toggleSkillTypeStatusById(true, skillTypeId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
