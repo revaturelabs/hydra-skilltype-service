@@ -7,13 +7,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.revature.beans.SimpleSkillType;
 import com.revature.hydra.skilltype.data.SimpleSkillTypeRepository;
+import com.revature.hydra.test.util.TestContext;
+import com.revature.hydra.test.util.WebAppContext;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = { TestContext.class, WebAppContext.class })
 @DataJpaTest
 @WebAppConfiguration
 public class SimpleSkillTypeRespositoryTest {
