@@ -134,7 +134,7 @@ public class SkillTypeController {
 	public ResponseEntity<Void> updateSkillType(@RequestBody SkillTypeBucketWrapper skillTypeBuckets) {
 
 		if (skillTypeCompositionService.updateSkillTypeBucketLookup(skillTypeBuckets.getSkillTypeId(),
-				skillTypeBuckets.getSkillTypeName(), skillTypeBuckets.getBucketIds(), skillTypeBuckets.getWeights())) {
+				skillTypeBuckets.getSkillTypeName(), skillTypeBuckets.getWeights())) {
 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}

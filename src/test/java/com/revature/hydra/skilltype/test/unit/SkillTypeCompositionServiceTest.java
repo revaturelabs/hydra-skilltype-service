@@ -46,13 +46,12 @@ public class SkillTypeCompositionServiceTest {
 	public final void testUpdateSkillTypeBucketLookup() {
 		stcs.createSkill("2", "1");
 		int id = stcs.findSkillTypeByName("2").getSkillTypeId();
-		Integer[] bucketIds = {1, 2, 3};
 		Double[] weights = {10.0, 20.0, 70.0};
-		Assert.assertTrue(stcs.updateSkillTypeBucketLookup(id, "", bucketIds, weights));
+		Assert.assertTrue(stcs.updateSkillTypeBucketLookup(id, "", weights));
 		Double[] weights2 = {11.0, 20.0, 70.0};
-		Assert.assertFalse(stcs.updateSkillTypeBucketLookup(id, "", bucketIds, weights2));
+		Assert.assertFalse(stcs.updateSkillTypeBucketLookup(id, "", weights2));
 		Double[] weights3 = {9.0, 20.0, 70.0};
-		Assert.assertFalse(stcs.updateSkillTypeBucketLookup(id, "", bucketIds, weights3));
+		Assert.assertFalse(stcs.updateSkillTypeBucketLookup(id, "", weights3));
 	}
 	
 	@Test

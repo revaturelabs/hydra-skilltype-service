@@ -38,6 +38,12 @@ public class SimpleSkillTypeBucketLookup implements Serializable {
 		super();
 	}
 
+	public SimpleSkillTypeBucketLookup(SimpleSkillType skillType, Double weight) {
+		super();
+		this.skillType = skillType;
+		this.weight = weight;
+	}
+
 	public SimpleSkillTypeBucketLookup(SimpleSkillType skillType, Integer bucket, Double weight) {
 		super();
 		this.skillType = skillType;

@@ -59,13 +59,11 @@ public class SkillTypeCompositionService {
 	 * 
 	 * @param skillTypeId Id of skilltype
 	 * @param skillTypeName skilltype name
-	 * @param bucketIds array of bucket ids
 	 * @param weights array of weights
 	 * 
 	 * @return Whether association was successfully created
 	 */
-	public Boolean updateSkillTypeBucketLookup(Integer skillTypeId, String skillTypeName, Integer[] bucketIds,
-			Double[] weights) {
+	public Boolean updateSkillTypeBucketLookup(Integer skillTypeId, String skillTypeName, Double[] weights) {
 		Double sum = 0.0;
 		for (Double x : weights) {
 			sum += x;
@@ -79,8 +77,8 @@ public class SkillTypeCompositionService {
 			if (st != null) {
 				skillTypeBucketLookupRepository.deleteBySkillType(st);
 				
-				for (int i = 0; i < bucketIds.length && i < weights.length; i++) {
-					skillTypeBucketLookupRepository.save(new SimpleSkillTypeBucketLookup(st, bucketIds[i], weights[i]));
+				for (int i = 0;  i < weights.length; i++) {
+					skillTypeBucketLookupRepository.save(new SimpleSkillTypeBucketLookup(st, weights[i]));
 				}
 				return true;
 			}
