@@ -63,13 +63,13 @@ public class SkillTypeCompositionService {
 	 * 
 	 * @return Whether association was successfully created
 	 */
-	public Boolean updateSkillTypeBucketLookup(Integer skillTypeId, String skillTypeName, Double[] weights) {
+	public Boolean updateSkillTypeBucketLookup(Integer skillTypeId, Double[] weights) {
 		Double sum = 0.0;
 		for (Double x : weights) {
 			sum += x;
 		}
 
-		if (sum == 100d) {
+		if (sum.intValue() == 100 || sum.intValue()==0) {
 			SimpleSkillType st = skillTypeRepository.findOne(skillTypeId);
 			
 			// Update skillType. 
@@ -100,12 +100,12 @@ public class SkillTypeCompositionService {
 			sum += x;
 		}
 
-		if (sum == 100d) {
+		if (sum.intValue() == 100 || sum.intValue() == 0) {
 			SimpleSkillType st = skillTypeRepository.findBySkillTypeName(skillTypeName);
 			System.out.println(st.toString());
 			List<SimpleSkillTypeBucketLookup> sstbl = skillTypeBucketLookupRepository.findBySkillType(st);
 			// Create a new skill type association if it doesn't exist.
-			if (sstbl.size() == 0 && st != null) {
+			if (sstbl.size() == 0) {
 				System.out.println(sstbl.toString());
 				// Go through both arrays and add entries accordingly.
 				for (int i = 0; i < bucketIds.length && i < weights.length; i++) {

@@ -1,6 +1,7 @@
 package com.revature.beans;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class SkillTypeBucketLookup implements Serializable {
 
@@ -61,10 +62,10 @@ public class SkillTypeBucketLookup implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((skillTypeBucketLookupId == null) ? 0 : skillTypeBucketLookupId.hashCode());
+		result = prime * result + Arrays.hashCode(bucket);
 		result = prime * result + ((skillType == null) ? 0 : skillType.hashCode());
-		result = prime * result + ((bucket == null) ? 0 : bucket.hashCode());
-		result = prime * result + ((weight == null) ? 0 : weight.hashCode());
+		result = prime * result + ((skillTypeBucketLookupId == null) ? 0 : skillTypeBucketLookupId.hashCode());
+		result = prime * result + Arrays.hashCode(weight);
 		return result;
 	}
 
@@ -76,49 +77,33 @@ public class SkillTypeBucketLookup implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SkillTypeBucketLookup tbl = (SkillTypeBucketLookup) obj;
-		if (this.skillTypeBucketLookupId == null) {
-			if (tbl.skillTypeBucketLookupId != null) {
-				return false;
-			}
-		}
-		if (this.skillTypeBucketLookupId != tbl.getSkillTypeBucketLookupId()) {
+		SkillTypeBucketLookup other = (SkillTypeBucketLookup) obj;
+		if (!Arrays.equals(bucket, other.bucket))
 			return false;
-		}
-
-		if (this.skillType == null) {
-			if (tbl.getSkillType() != null) {
+		if (skillType == null) {
+			if (other.skillType != null)
 				return false;
-			}
-		}
-		if (!this.skillType.equals(tbl.getSkillType())) {
+		} else if (!skillType.equals(other.skillType))
 			return false;
-		}
-
-		if (this.bucket == null) {
-			if (tbl.getBucket() != null) {
+		if (skillTypeBucketLookupId == null) {
+			if (other.skillTypeBucketLookupId != null)
 				return false;
-			}
-		}
-		if (!this.bucket.equals(tbl.getBucket())) {
+		} else if (!skillTypeBucketLookupId.equals(other.skillTypeBucketLookupId))
 			return false;
-		}
-
-		if (this.weight == null) {
-			if (tbl.getWeight() != null) {
-				return false;
-			}
-		}
-		if (this.weight != tbl.getWeight()) {
+		if (!Arrays.equals(weight, other.weight))
 			return false;
-		}
-
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "SkillTypeBucketLookup[skillTypeBucketLookupId=" + skillTypeBucketLookupId + ", bucket=" + bucket
-				+ ", skillType=" + skillType + ", weight=" + weight + "]";
+		return "SkillTypeBucketLookup [skillTypeBucketLookupId=" + skillTypeBucketLookupId + ", skillType=" + skillType
+				+ ", bucket=" + Arrays.toString(bucket) + ", weight=" + Arrays.toString(weight) + "]";
 	}
+
+	public SkillTypeBucketLookup() {
+		super();
+	}
+
+
 }

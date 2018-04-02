@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: SkillTypeRepositoryService
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Okanu's PC
+Built-By: sunri
 Implementation-Vendor-Id: com.revature
 Build-Jdk: 1.8.0_161
 Implementation-URL: http://projects.spring.io/spring-boot/SkillTypeSer

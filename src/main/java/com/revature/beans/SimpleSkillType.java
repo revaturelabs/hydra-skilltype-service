@@ -25,9 +25,9 @@ public class SimpleSkillType implements Serializable {
 	@Column(name = "SKILL_TYPE_NAME")
 	private String skillTypeName;
 
-	@Column(name="SKILL_TYPE_DESCRIPTION")
+	@Column(name = "SKILL_TYPE_DESCRIPTION")
 	private String skillTypeDescription;
-	
+
 	@Column(name = "IS_ACTIVE")
 	private Boolean isActive;
 
@@ -99,9 +99,10 @@ public class SimpleSkillType implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
+		result = prime * result + ((skillTypeDescription == null) ? 0 : skillTypeDescription.hashCode());
 		result = prime * result + ((skillTypeId == null) ? 0 : skillTypeId.hashCode());
 		result = prime * result + ((skillTypeName == null) ? 0 : skillTypeName.hashCode());
-		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
 		return result;
 	}
 
@@ -113,34 +114,27 @@ public class SimpleSkillType implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SimpleSkillType t = (SimpleSkillType) obj;
-		if (this.skillTypeId == null) {
-			if (t.getSkillTypeId() != null) {
+		SimpleSkillType other = (SimpleSkillType) obj;
+		if (isActive == null) {
+			if (other.isActive != null)
 				return false;
-			}
-		}
-		if (this.skillTypeId != t.getSkillTypeId()) {
+		} else if (!isActive.equals(other.isActive))
 			return false;
-		}
-
-		if (this.skillTypeName == null) {
-			if (t.getSkillTypeName() != null) {
+		if (skillTypeDescription == null) {
+			if (other.skillTypeDescription != null)
 				return false;
-			}
-		}
-		if (!this.skillTypeName.equals(t.getSkillTypeName())) {
+		} else if (!skillTypeDescription.equals(other.skillTypeDescription))
 			return false;
-		}
-
-		if (this.isActive == null) {
-			if (t.isActive != null) {
+		if (skillTypeId == null) {
+			if (other.skillTypeId != null)
 				return false;
-			}
-		}
-		if (this.isActive != t.getIsActive()) {
+		} else if (!skillTypeId.equals(other.skillTypeId))
 			return false;
-		}
-
+		if (skillTypeName == null) {
+			if (other.skillTypeName != null)
+				return false;
+		} else if (!skillTypeName.equals(other.skillTypeName))
+			return false;
 		return true;
 	}
 

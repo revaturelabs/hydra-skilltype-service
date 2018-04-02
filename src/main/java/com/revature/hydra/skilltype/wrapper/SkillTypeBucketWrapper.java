@@ -17,7 +17,6 @@ public class SkillTypeBucketWrapper {
 	
 	public SkillTypeBucketWrapper() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public SkillTypeBucketWrapper(Integer skillTypeId, String skillTypeName, Integer[] bucketIds, Double[] weights) {
 		super();

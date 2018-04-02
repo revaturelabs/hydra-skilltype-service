@@ -100,13 +100,14 @@ public class SimpleSkillTypeBucketLookup implements Serializable {
 		this.weight = weight;
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((skillTypeBucketLookupId == null) ? 0 : skillTypeBucketLookupId.hashCode());
-		result = prime * result + ((skillType == null) ? 0 : skillType.hashCode());
 		result = prime * result + ((bucket == null) ? 0 : bucket.hashCode());
+		result = prime * result + ((skillType == null) ? 0 : skillType.hashCode());
+		result = prime * result + ((skillTypeBucketLookupId == null) ? 0 : skillTypeBucketLookupId.hashCode());
 		result = prime * result + ((weight == null) ? 0 : weight.hashCode());
 		return result;
 	}
@@ -119,43 +120,27 @@ public class SimpleSkillTypeBucketLookup implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SimpleSkillTypeBucketLookup tbl = (SimpleSkillTypeBucketLookup) obj;
-		if (this.skillTypeBucketLookupId == null) {
-			if (tbl.skillTypeBucketLookupId != null) {
+		SimpleSkillTypeBucketLookup other = (SimpleSkillTypeBucketLookup) obj;
+		if (bucket == null) {
+			if (other.bucket != null)
 				return false;
-			}
-		}
-		if (this.skillTypeBucketLookupId != tbl.getSkillTypeBucketLookupId()) {
+		} else if (!bucket.equals(other.bucket))
 			return false;
-		}
-
-		if (this.skillType == null) {
-			if (tbl.getSkillType() != null) {
+		if (skillType == null) {
+			if (other.skillType != null)
 				return false;
-			}
-		}
-		if (!this.skillType.equals(tbl.getSkillType())) {
+		} else if (!skillType.equals(other.skillType))
 			return false;
-		}
-
-		if (this.bucket == null) {
-			if (tbl.getBucket() != null) {
+		if (skillTypeBucketLookupId == null) {
+			if (other.skillTypeBucketLookupId != null)
 				return false;
-			}
-		}
-		if (!this.bucket.equals(tbl.getBucket())) {
+		} else if (!skillTypeBucketLookupId.equals(other.skillTypeBucketLookupId))
 			return false;
-		}
-
-		if (this.weight == null) {
-			if (tbl.getWeight() != null) {
+		if (weight == null) {
+			if (other.weight != null)
 				return false;
-			}
-		}
-		if (this.weight != tbl.getWeight()) {
+		} else if (!weight.equals(other.weight))
 			return false;
-		}
-
 		return true;
 	}
 

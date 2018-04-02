@@ -67,17 +67,19 @@ public class SimpleBucket implements Serializable{
 		this.isActive = isActive;
 	}
 	
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bucketId == null) ? 0 : bucketId.hashCode());
 		result = prime * result + ((bucketCategory == null) ? 0 : bucketCategory.hashCode());
 		result = prime * result + ((bucketDescription == null) ? 0 : bucketDescription.hashCode());
+		result = prime * result + ((bucketId == null) ? 0 : bucketId.hashCode());
 		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -86,46 +88,30 @@ public class SimpleBucket implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SimpleBucket b = (SimpleBucket) obj;
-		if(this.bucketId == null) {
-			if(b.getBucketId() != null) {
+		SimpleBucket other = (SimpleBucket) obj;
+		if (bucketCategory == null) {
+			if (other.bucketCategory != null)
 				return false;
-			}
-		}
-		if(this.bucketId != b.getBucketId()) {
+		} else if (!bucketCategory.equals(other.bucketCategory))
 			return false;
-		}
-		
-		if(this.bucketCategory == null) {
-			if(b.getBucketCategory() != null) {
+		if (bucketDescription == null) {
+			if (other.bucketDescription != null)
 				return false;
-			}
-		}
-		if(!this.bucketCategory.equals(b.getBucketCategory())) {
+		} else if (!bucketDescription.equals(other.bucketDescription))
 			return false;
-		}
-		
-		if(this.bucketDescription == null) {
-			if(b.getBucketDescription() != null) {
+		if (bucketId == null) {
+			if (other.bucketId != null)
 				return false;
-			}
-		}
-		if(!this.bucketDescription.equals(b.getBucketDescription())) {
+		} else if (!bucketId.equals(other.bucketId))
 			return false;
-		}
-		
-		if(this.isActive == null) {
-			if(b.isActive != null) {
+		if (isActive == null) {
+			if (other.isActive != null)
 				return false;
-			}
-		}
-		if(this.isActive != b.getIsActive()) {
+		} else if (!isActive.equals(other.isActive))
 			return false;
-		}
-		
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Bucket[bucketId="+bucketId+", bucketCategory="+bucketCategory
