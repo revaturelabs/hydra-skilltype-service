@@ -133,8 +133,7 @@ public class SkillTypeController {
 	@RequestMapping(value = "/skillType/updateSkillTypeBucket", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> updateSkillType(@RequestBody SkillTypeBucketWrapper skillTypeBuckets) {
 
-		if (skillTypeCompositionService.updateSkillTypeBucketLookup(skillTypeBuckets.getSkillTypeId(),
-				skillTypeBuckets.getSkillTypeName(), skillTypeBuckets.getWeights())) {
+		if (skillTypeCompositionService.updateSkillTypeBucketLookup(skillTypeBuckets.getSkillTypeId(), skillTypeBuckets.getWeights())) {
 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
