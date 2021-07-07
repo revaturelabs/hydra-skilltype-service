@@ -27,6 +27,7 @@ hs_err_pid*
 bin/ 
 tmp/ 
 *.tmp 
+
 *.bak 
 *.swp 
 *~.nib 
